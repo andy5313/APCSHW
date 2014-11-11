@@ -93,8 +93,7 @@ public class SuperArray{
 	    numElements --;
 	    return saved;
 	}else{
-	    System.out.println("Index out of range");
-	    return null;
+	    throw new IndexOutOfBoundsException();
 	}
     }
 
@@ -132,8 +131,7 @@ public class SuperArray{
 	if (index>=0 && index< SuperArray.length){
 		return SuperArray[index];    
 	} else {
-	    System.out.println("Index is out of range");
-	    return null;
+	throw new IndexOutOfBoundsException();
 	}
     }
 
@@ -143,8 +141,7 @@ public class SuperArray{
 	    SuperArray[index] = o;
 	    return saved;
 	} else {
-	    System.out.println("Index out of range");
-	    return null;
+	throw new IndexOutOfBoundsException();
 	}
     }
 
