@@ -1,6 +1,5 @@
 public class WordGrid{
     private char[][]grid;
-  
     public WordGrid(int rows,int cols){
 	grid = new char[rows][cols];
 	int r = 0;
@@ -11,9 +10,8 @@ public class WordGrid{
 		c ++;
 	    }
 	    r ++;
-	} 
+	}
     }
-
     public void clear(){
 	int r = 0;
 	while (r<grid.length){
@@ -23,9 +21,8 @@ public class WordGrid{
 		c ++;
 	    }
 	    r ++;
-	} 
+	}
     }
-
     public String toString(){
 	String s = "";
 	int r = 0;
@@ -37,9 +34,10 @@ public class WordGrid{
 	    }
 	    s += "\n";
 	    r ++;
-	} 
+	}
 	return s;
     }
+
     
     public boolean addWordHorizontal(String word, int row, int col){
 	if (word.length()+ col > grid.length){
@@ -53,5 +51,30 @@ public class WordGrid{
 	    return true;
 	}
     }
-    
+
+    public boolean addWordVertical(String word, int row, int col){
+	if (word.length()+ row > grid[row].length){
+	    return false;
+	}else {
+	    int i = 0;
+	    while (i<word.length()){
+		grid[row+i][col] = word.charAt(i);
+		i ++;
+	    }
+	    return true;
+	}
+    }
+
+    public boolean addWordDiagonal(String word, int row, int col){
+	if (word.length()+ row + col > grid.length + grid[row].length){
+	    return false;
+	}else {
+	    int i = 0;
+	    while (i<word.length()){
+		grid[row+i][col+i] = word.charAt(i);
+		i ++;
+	    }
+	    return true;
+	}
+    }
 }
