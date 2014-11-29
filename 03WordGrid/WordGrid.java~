@@ -50,11 +50,9 @@ public class WordGrid{
 	return grid[i].length;
     }
 
-  
-
     
     public boolean addWordHorizontal(String word, int row, int col){
-	if (word.length()+ col <= grid[row].length){
+	if (word.length()+ col <= grid.length){
 	    boolean notOverlapping = true;
 	    int a = 0;
 	    while (a<word.length()){
@@ -78,7 +76,7 @@ public class WordGrid{
 	    boolean notOverlapping = true;
 	    int a = 0;
 	    while (a<word.length()){
-		if (grid[row][col-a] == '.' || grid[row][col-a]== word.charAt(a)){
+		if (grid[row][col-a] == '.' || grid[row][col+a]== word.charAt(a)){
 		    notOverlapping = notOverlapping && true;
 		} else {
 		    notOverlapping = false;
@@ -185,38 +183,4 @@ public class WordGrid{
 	}
 	return false;
     }
-
-    public void loadFromFile(String filename, boolean fillRandomLetters) throws FileNotFoundException {
-	try {
-	    File text = new File("WordList.txt");
-	    Scanner scan = new Scanner(text);
-	    ArrayList<String> wordlist = new ArrayList<String>();
-	    while (scan.hasNextLine()){
-		String line = scan.nextLine();
-		wordlist.add(line);
-	    } 
-	}catch (Exception e){
-		System.out.println("File not found");
-		return;
-	}
-	if (fillRandomLetters){
-	    this.fillRandomLetters();
-	}
-	
-	
-    }
-
-    public void fillRandomLetters() {
-	for (int r=0;r<grid[0].length;r++) {
-	    for (int c=0;c<grid.length;c++) {
-		if (grid[r][c] == '.') {
-		    String alphabet = "abcdefghijklmnopqrstuvwxyz";
-		    Random rand = new Random();
-		    char filler = alphabet.charAt(rand.nextInt(26));
-		    grid[r][c] = filler;
-		}
-	    }
-	}
-    }
-
 }
