@@ -4,6 +4,10 @@ import java.io.FileNotFoundException;
 
 public class WordGrid{
     private char[][]grid;
+    private ArrayList<String>words = new ArrayList<String>();
+    private ArrayList<String>wordsInGrid = new ArrayList<String>();
+    Random rand = new Random();
+   
     public WordGrid(int rows,int cols){
 	grid = new char[rows][cols];
 	int r = 0;
@@ -71,6 +75,7 @@ public class WordGrid{
 		    grid[row][col+i] = word.charAt(i);
 		    i ++;
 		}
+		wordsInGrid.add(word);
 		return true;
 	    }
 	    return false;
@@ -91,6 +96,7 @@ public class WordGrid{
 		    grid[row][col-i] = word.charAt(i);
 		    i ++;
 		}
+		wordsInGrid.add(word);
 		return true;
 	    }
 	}
@@ -115,6 +121,7 @@ public class WordGrid{
 		    grid[row+i][col] = word.charAt(i);
 		    i ++;
 		}
+		wordsInGrid.add(word);
 		return true;
 	    }
 	    return false;
@@ -135,6 +142,7 @@ public class WordGrid{
 		    grid[row-i][col] = word.charAt(i);
 		    i ++;
 		}
+		wordsInGrid.add(word);
 		return true;
 	    }
 	}
@@ -160,6 +168,7 @@ public class WordGrid{
 		    grid[row+i][col+i] = word.charAt(i);
 		    i ++;
 		}
+		wordsInGrid.add(word);
 		return true;
 	    }
 	    return false;
@@ -180,6 +189,7 @@ public class WordGrid{
 		    grid[row-i][col-i] = word.charAt(i);
 		    i ++;
 		}
+		wordsInGrid.add(word);
 		return true;
 	    }
 	}
@@ -217,6 +227,21 @@ public class WordGrid{
 		}
 	    }
 	}
+    }
+
+    public String wordsInPuzzle(){
+	String s = "";
+	for (int i = 0; i < wordsInGrid.size(); ++i) {
+	    s += wordsInGrid.get(i) + "\t";
+	    if (i % 4 == 0 && i != 0) {
+		s += "\n";
+	    }
+	}
+	return s;
+    }
+
+    public void setSeed(long seed){
+	rand = new Random(seed);
     }
 
 }

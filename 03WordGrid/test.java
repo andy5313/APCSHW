@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 public class test{
     public static void main(String[] args) throws FileNotFoundException{
-	WordGrid w = new WordGrid(10,10);
+	WordGrid w = new WordGrid(20,20);
 	File text = new File("WordList.txt");
 	Scanner scan = new Scanner(text);
 	ArrayList<String> wordlist = new ArrayList<String>();
@@ -20,23 +20,35 @@ public class test{
 	int i = 0;
 	while (i<wordlist.size()){
 	    if (decision == 0){
-		while (!(w.addWordHorizontal(wordlist.get(i), randomY, randomX))){
+		int j = 0;
+		while (j<10){
+		    if (w.addWordHorizontal(wordlist.get(i), randomY, randomX)){
+			break;
+		    }
 		    randomY = rand.nextInt(w.getLength());
-		    randomX = rand.nextInt(w.getLength(0));	    
+		    randomX = rand.nextInt(w.getLength(0));
+		    j ++;
 		}		
-		w.addWordHorizontal(wordlist.get(i), randomY, randomX);
 	    }else if (decision == 1){
-		while (!(w.addWordVertical(wordlist.get(i), randomY, randomX))){
+		int j = 0;
+		while (j<10){
+		    if (w.addWordVertical(wordlist.get(i), randomY, randomX)){
+			break;
+		    }
 		    randomY = rand.nextInt(w.getLength());
 		    randomX = rand.nextInt(w.getLength(0));
+		    j ++;
 		}
-		w.addWordVertical(wordlist.get(i), randomY, randomX);
 	    }else {
-		while (!(w.addWordDiagonal(wordlist.get(i), randomY, randomX))){
+		int j = 0;
+		while (j<10){
+		    if (w.addWordDiagonal(wordlist.get(i), randomY, randomX)){
+			break;
+		    }
 		    randomY = rand.nextInt(w.getLength());
 		    randomX = rand.nextInt(w.getLength(0));
+		    j ++;
 		}
-		w.addWordDiagonal(wordlist.get(i), randomY, randomX);
 	    }
 	    i++;
 	    decision = rand.nextInt(3);
