@@ -6,10 +6,11 @@ public class WordGrid{
     private char[][]grid;
     private ArrayList<String>words = new ArrayList<String>();
     private ArrayList<String>wordsInGrid = new ArrayList<String>();
-    Random rand = new Random();
+    private Random rand = new Random();
    
     public WordGrid(int rows,int cols){
 	grid = new char[rows][cols];
+	rand.setSeed(123);
 	int r = 0;
 	while (r<grid.length){
 	    int c = 0;
@@ -20,12 +21,16 @@ public class WordGrid{
 	    r ++;
 	}
     }
+    public WordGrid(){
+	grid = new char[20][20];
+	clear();
+    }
     public void clear(){
 	int r = 0;
 	while (r<grid.length){
 	    int c = 0;
 	    while (c<grid[r].length){
-		grid[r][c] = ' ';
+		grid[r][c] = '.';
 		c ++;
 	    }
 	    r ++;
@@ -282,7 +287,7 @@ public class WordGrid{
     }
 
     public void setSeed(long seed){
-	rand = new Random(seed);
+	rand.setSeed(seed);
     }
 
     
