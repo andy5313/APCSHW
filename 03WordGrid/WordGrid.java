@@ -196,24 +196,65 @@ public class WordGrid{
 	return false;
     }
 
-    public void loadFromFile(String filename, boolean fillRandomLetters) throws FileNotFoundException {
+    public void loadWordsFromFile(String filename, boolean fillRandomLetters) throws FileNotFoundException {
 	try {
-	    File text = new File("WordList.txt");
+	    File text = new File(filename);
 	    Scanner scan = new Scanner(text);
 	    ArrayList<String> wordlist = new ArrayList<String>();
 	    while (scan.hasNextLine()){
 		String line = scan.nextLine();
 		wordlist.add(line);
 	    } 
+	    Random rand = new Random();
+	    int decision = rand.nextInt(3);
+	    int randomY = rand.nextInt(getLength());
+	    int randomX = rand.nextInt(getLength(randomY));
+	    int i = 0;
+	    while (i<wordlist.size()){
+		if (decision == 0){
+		    int j = 0;
+		    while (j<10){
+			if (addWordHorizontal(wordlist.get(i), randomY, randomX)){
+			    break;
+			}
+			randomY = rand.nextInt(getLength());
+			randomX = rand.nextInt(getLength(0));
+			j ++;
+		    }		
+		}else if (decision == 1){
+		    int j = 0;
+		    while (j<10){
+			if (addWordVertical(wordlist.get(i), randomY, randomX)){
+			    break;
+			}
+			randomY = rand.nextInt(getLength());
+			randomX = rand.nextInt(getLength(0));
+			j ++;
+		    }
+		}else {
+		    int j = 0;
+		    while (j<10){
+			if (addWordDiagonal(wordlist.get(i), randomY, randomX)){
+			    break;
+			}
+			randomY = rand.nextInt(getLength());
+			randomX = rand.nextInt(getLength(0));
+			j ++;
+		    }
+		}
+		i++;
+		decision = rand.nextInt(3);
+		randomY = rand.nextInt(getLength());
+		randomX = rand.nextInt(getLength(0));
+	    }
 	}catch (Exception e){
-		System.out.println("File not found");
-		return;
+	    System.out.println("File not found");
+	    return;
 	}
-	if (fillRandomLetters){
-	    this.fillRandomLetters();
+    	
+      	if (fillRandomLetters){
+	    this.fillRandomLetters();	
 	}
-	
-	
     }
 
     public void fillRandomLetters() {
@@ -244,4 +285,5 @@ public class WordGrid{
 	rand = new Random(seed);
     }
 
+    
 }
