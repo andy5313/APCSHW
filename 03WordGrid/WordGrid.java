@@ -8,18 +8,14 @@ public class WordGrid{
     private ArrayList<String>wordsInGrid = new ArrayList<String>();
     private Random rand = new Random();
    
+    public WordGrid(int rows,int cols,long seed){
+	grid = new char[rows][cols];
+	rand.setSeed(seed);
+	clear();
+    }
     public WordGrid(int rows,int cols){
 	grid = new char[rows][cols];
-	rand.setSeed(123);
-	int r = 0;
-	while (r<grid.length){
-	    int c = 0;
-	    while (c<grid[r].length){
-		grid[r][c] = '.';
-		c ++;
-	    }
-	    r ++;
-	}
+	clear();
     }
     public WordGrid(){
 	grid = new char[20][20];
