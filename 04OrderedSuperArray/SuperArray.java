@@ -148,25 +148,27 @@ public class SuperArray{
 	}
     }
     
+    public void badInsertionSort(){
+        OrderedSuperArray c = new OrderedSuperArray();
+        while( this.size() > 0){ 
+            c.add(this.remove(0));
+        }
+        while(c.size() > 0){
+            this.add(c.remove(0));
+        }
+    }	   
+    
     public void insertionSort(){
-	for (int i = 1; i<SuperArray.length;i++){
-	    if (SuperArray[i].compareTo(SuperArray[0])<0){
-		String copy = SuperArray[i];
-		for (int a =0;  a<1;a++){
-		    SuperArray[i-a]=SuperArray[i-a-1];
-		}
-		SuperArray[0] = copy;
-	    }
-	    for (int b = i;b>0;b--){
-		if (SuperArray[i].compareTo(SuperArray[i-b])>0 && SuperArray[i].compareTo(SuperArray[i-b+1])<0){
-		    String copy = SuperArray[i];
-		    for (int a = 0;a<i-b+1;a++){
-			SuperArray[i-a]=SuperArray[i-a-1];
-		    }
-		    SuperArray[i-b+1] = copy;
-		}
-	    }
-	}
+    	for (int i=1;i<SuperArray.length;i++){
+    		if (SuperArray[i].compareTo(SuperArray[0])<0){
+    			this.add(0,this.remove(i));
+    		}
+    		for (int a =i;a>0;j--){
+    			if (SuperArray[i].compareTo(SuperArray[i-a])>0 && SuperArray[i].compareTo(SuperArray[i-a+1])<0){
+    				this.add((i-a),this.remove(i));
+    			}
+    		}
+    	}
     }
 
 }
