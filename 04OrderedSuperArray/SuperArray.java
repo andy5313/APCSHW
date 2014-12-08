@@ -147,24 +147,36 @@ public class SuperArray{
 	    return null;
 	}
     }
-    
-    public void insertionSort(){
-	for (int i = 1; i<SuperArray.length;i++){
-	    if (SuperArray[i].compareTo(SuperArray[0])<0){
-		String copy = SuperArray[i];
-		for (int a =0;  a<1;a++){
-		    SuperArray[i-a]=SuperArray[i-a-1];
-		}
-		SuperArray[0] = copy;
+    public int find(String target){
+	for (int i = 0;i<SuperArray.length;i++){
+	    if (SuperArray[i].equals(target)){
+		return i;
 	    }
-	    for (int b = i;b>0;b--){
-		if (SuperArray[i].compareTo(SuperArray[i-b])>0 && SuperArray[i].compareTo(SuperArray[i-b+1])<0){
-		    String copy = SuperArray[i];
-		    for (int a = 0;a<i-b+1;a++){
-			SuperArray[i-a]=SuperArray[i-a-1];
-		    }
-		    SuperArray[i-b+1] = copy;
+	}
+	return SuperArray.length;
+    }
+    
+    public void badInsertionSort(){
+        OrderedSuperArray c = new OrderedSuperArray();
+        while( this.size() > 0){ 
+            c.add(this.remove(0));
+        }
+        while(c.size() > 0){
+            this.add(c.remove(0));
+        }
+    }
+
+    public void insertionSort(){
+	String s = "";
+	for (int i = 0; i < SuperArray.length - 1; i++){
+	    if (SuperArray[i + 1].compareTo(SuperArray[i]) < 0){
+		s = SuperArray[i+1];
+		int a;
+		for ( a = i; (a >= 0) && (s.compareTo(SuperArray[a]) < 0); a--){
+		    SuperArray[a + 1] = SuperArray[a];
 		}
+		
+		SuperArray[a + 1] = s;
 	    }
 	}
     }
