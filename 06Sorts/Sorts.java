@@ -36,27 +36,36 @@ public class Sorts{
 	}
     }
 
+
     public static void main(String[] args){
-	int[] array = new int[5];
-	array[0]=3;
-	array[1]=5;
-	array[2]=0;
-	array[3]=10;
-	array[4]=4;
+	int[] array = new int[10];
+	array[0] = 5;
+	array[1] = 10;
+	array[2] = 2;
+	array[3] = 8;
+	array[4] = 5;
+	array[5] = 20;
+	array[6] = 16;
+	array[7] = 3;
+	array[8] = 11;
+	array[9] = 7;
 	if (args[0].equals("bubble")){
-	    System.out.println(array);
+	    long startTime = System.currentTimeMillis();
 	    bubble(array);
-	    System.out.println(array);
+	    long endTime = System.currentTimeMillis();
+	    System.out.println("bubble "+ (endTime-startTime));
 	}
 	if (args[0].equals("selection")){
-	    System.out.println(array);
+	    long startTime = System.currentTimeMillis();
 	    selection(array);
-	    System.out.println(array);
+	    long endTime = System.currentTimeMillis();
+	    System.out.println("selection "+ (endTime-startTime));
 	}
 	if (args[0].equals("insertion")){
-	    System.out.println(array);
+	    long startTime = System.currentTimeMillis();
 	    insertion(array);
-	    System.out.println(array);
+	    long endTime = System.currentTimeMillis();
+	    System.out.println("insertion "+ (endTime-startTime));
 	}
     }
 }
